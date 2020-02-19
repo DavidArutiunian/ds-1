@@ -28,7 +28,7 @@ namespace FrontendClient.Controllers
         public async Task<IActionResult> HandleFormSubmit(String description) {
             using var channel = GrpcChannel.ForAddress("http://localhost:5000");
             var client = new Job.JobClient(channel);
-            var reply = await client.RegisterAsync(new RegisterRequest { Description = "This is job" });
+            var reply = await client.RegisterAsync(new RegisterRequest { Description = description });
             return View("Task", new TaskViewModel { Id = reply.Id });
         }
 
